@@ -74,42 +74,48 @@ constructor(){
      var flag='false';
       var data='false';
 
-      for (let i = 0; i < this.state.word.length; i++) {
-         for (let j = 0; j < this.state.word[i].length; j++)
-         {
-            for (let z = 0; z <this.state.word[i][j].length; z++) {
+      //check if the data exist
+     for (let i = 0; i < this.state.word.length; i++){
 
-               if(flag=='false' && data=='false')
-               {
-                  if(this.state.word[i][j][0]==houseno && this.state.word[i][j][1]==date)
-               {
-                  this.state.message="Record exist";
-                  data='true';
-               }
-               else{
-                     if(this.state.word[i][j][0]=='0' && this.state.word[i][j][1]=='0')
-                     {
-     
-                        this.state.word[i][j][0]=houseno;
-                        this.state.word[i][j][1]=date;
-                        flag='true';
-                        data='true';
-                     }
-                     else{
-                        this.state.message="error loading data";
-                     }
-               }
-
-              
-               }
-               else{
-                  this.state.message="Record exist";
-               }
-               
-
+      for (let j = 0; j < this.state.word[i].length; j++)
+      {
+         for (let z = 0; z <this.state.word[i][j].length; z++){
+            if(this.state.word[i][j][0]==houseno && this.state.word[i][j][1]==date)
+            {
+               var data='true';
             }
          }
+
+      }
+     }
+      //store data in the array
+     for (let i = 0; i < this.state.word.length; i++) {
+      for (let j = 0; j < this.state.word[i].length; j++)
+      {
+         for (let z = 0; z <this.state.word[i][j].length; z++) {
+   
+            if(flag=='false' && data=='false')
+            {
+               if(this.state.word[i][j][0]=='0' && this.state.word[i][j][1]=='0')
+                  {
+   
+                     this.state.word[i][j][0]=houseno;
+                     this.state.word[i][j][1]=date;
+                     flag='true'
+                     data='true';
+                  }
+                  else{
+                     this.state.message="error loading data";
+                  }
+            }
+            else{
+               this.state.message="Record exist";
+            }
+            
+   
          }
+      }
+      }
           
       this.setState({ date: '' });
       this.setState({ houseno: '' })
