@@ -72,17 +72,19 @@ constructor(){
    }
    analyze(date,houseno) {
      var flag='false';
+      var data='false';
 
       for (let i = 0; i < this.state.word.length; i++) {
          for (let j = 0; j < this.state.word[i].length; j++)
          {
             for (let z = 0; z <this.state.word[i][j].length; z++) {
 
-               if(flag=='false')
+               if(flag=='false' && data=='false')
                {
                   if(this.state.word[i][j][0]==houseno && this.state.word[i][j][1]==date)
                {
                   this.state.message="Record exist";
+                  data='true';
                }
                else{
                      if(this.state.word[i][j][0]=='0' && this.state.word[i][j][1]=='0')
@@ -90,7 +92,8 @@ constructor(){
      
                         this.state.word[i][j][0]=houseno;
                         this.state.word[i][j][1]=date;
-                        flag='true'
+                        flag='true';
+                        data='true';
                      }
                      else{
                         this.state.message="error loading data";
