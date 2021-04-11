@@ -6,6 +6,7 @@ class Inputs extends Component {
 constructor(){
    super(); 
    this.state = {
+      //first element is house no second element is date
     word:[
       [  ['24','09-08-18'],['25','09-09-18'],['26','09-08-18'],['27','09-10-18'],['28','09-08-18']
       ],
