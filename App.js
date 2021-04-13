@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { StyleSheet, Text,TextInput,SafeAreaView,View,Button} from 'react-native';
+import Moment from 'moment';
 
 
 class Inputs extends Component {
@@ -7,6 +8,7 @@ constructor(){
    super(); 
    this.state = {
       //first element is house no second element is date
+    date2: Moment().format('DD-MM-YY'),
     word:[
       [  ['24','09-08-18'],['25','09-09-18'],['26','09-08-18'],['27','09-10-18'],['28','09-08-18']
       ],
@@ -67,9 +69,35 @@ constructor(){
    ],
       date:'',
       houseNo:'',
-      message:''
-   } 
+      message:'',
+      arr: [ //incomplete array initialization
+        [  [0],[0],[0],[0],[0]  
+        ],
+        [  [0],[0],[0],[0],[0] 
+        ],
+        [  [0],[0],[0],[0],[0]
+        ],
+        [  [0],[0],[0],[0],[0]
+        ],
+        [  [0],[0],[0],[0],[0]
+        ],
+        [  [0],[0],[0],[0],[0]
+        ],
+        [  [0],[0],[0],[0],[0]
+        ]]
+       
+    
+   }}
+
+
+   analyzeDate(word,date,houseno, arr, date2) { //fx compare duration current & parcel date. then puts duration inside a 2d array
+       
+    this.state.arr[0][0] = 1; //bayangkan kat sini ada fx yg boleh add values to arr. 
+    this.setState({ arr: [0][0] })
+
+
    }
+
    analyze(date,houseno) {
      var flag='false';
       var data='false';
@@ -119,11 +147,15 @@ constructor(){
           
       this.setState({ date: '' });
       this.setState({ houseno: '' })
-      };
 
 
 
+
+      }
       render() {
+        const { date2 } = this.state;
+
+     
          return (
           <View style={styles.container}>
          <View style={styles.container}>
@@ -172,8 +204,23 @@ constructor(){
               <td>   :{this.state.word[2][1][0]} {this.state.word[2][1][1]}
               </td>
           </tr>
+
+          <td><td><View style={styles.button}>
+                  <Button color="#1d2424" 
+               title="Analyze dates"
+               onPress={() => this.analyzeDate(this.state.arr) }/> //call fx analyzeDate
+                   </View></td></td>
       
+            <p>{this.state.arr[0][0]}</p> //testing output, dont keep this
+          
+
+
+          <div class="date2">
+        <p> {this.state.date2}</p>
+      </div>
+
       
+
           
           </table>
          </View>
