@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text,TextInput,SafeAreaView,View,Button} from 'react-native';
 import Moment from 'moment';
 
@@ -7,16 +7,15 @@ class Inputs extends Component {
 constructor(){
    super(); 
    this.state = {
-      //first element is house no second element is date
-    date2: Moment().format('DD-MM-YY'),
-    word:[
-      [  ['24','09-08-18'],['25','09-09-18'],['26','09-08-18'],['27','09-10-18'],['28','09-08-18']
+    //first element is house no second element is date
+    MainStorage:[
+      [  ['24','2021-04-11'],['12','2021-04-09'],['26','2021-04-08'],['27','2021-04-07'],['28','2021-04-06']
       ],
-      [  ['29','09-08-18'],['30','09-08-18'],['40','12-08-18'],['50','10-08-18'],['60','09-08-18']
-      ],
-      [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
+      [  ['29','2021-04-05'],['30','2021-04-04'],['12','2021-04-03'],['50','2021-04-02'],['60','2021-04-01']
       ],
       [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
+      ],
+      [  ['0','0'],['0','0'],['0','0'],['0','0'],['12','12']
       ],
       [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
       ],
@@ -66,49 +65,28 @@ constructor(){
       ],
    [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
      ],
+     [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
    ],
-      date:'',
+   [  ['0','0'],['0','0'],['0','0'],['0','0'],['0','0']
+],
+   ],
+      UncollectedParcelArray:[],
+      date:Moment().format('YYYY-MM-DD'),
       houseNo:'',
-      message:'',
-      arr: [ //incomplete array initialization
-        [  [0],[0],[0],[0],[0]  
-        ],
-        [  [0],[0],[0],[0],[0] 
-        ],
-        [  [0],[0],[0],[0],[0]
-        ],
-        [  [0],[0],[0],[0],[0]
-        ],
-        [  [0],[0],[0],[0],[0]
-        ],
-        [  [0],[0],[0],[0],[0]
-        ],
-        [  [0],[0],[0],[0],[0]
-        ]]
-       
-    
-   }}
-
-
-   analyzeDate(word,date,houseno, arr, date2) { //fx compare duration current & parcel date. then puts duration inside a 2d array
-       
-    this.state.arr[0][0] = 1; //bayangkan kat sini ada fx yg boleh add values to arr. 
-    this.setState({ arr: [0][0] })
-
-
+      message:''
+   } 
    }
-
    analyze(date,houseno) {
      var flag='false';
-      var data='false';
+     var data='false';
 
-      //check if the data exist
-     for (let i = 0; i < this.state.word.length; i++){
+     //check if the data exist
+     for (let i = 0; i < this.state.MainStorage.length; i++){
 
-      for (let j = 0; j < this.state.word[i].length; j++)
+      for (let j = 0; j < this.state.MainStorage[i].length; j++)
       {
-         for (let z = 0; z <this.state.word[i][j].length; z++){
-            if(this.state.word[i][j][0]==houseno && this.state.word[i][j][1]==date)
+         for (let z = 0; z <this.state.MainStorage[i][j].length; z++){
+            if(this.state.MainStorage[i][j][0]==houseno && this.state.MainStorage[i][j][1]==date)
             {
                var data='true';
             }
@@ -117,18 +95,18 @@ constructor(){
       }
      }
       //store data in the array
-     for (let i = 0; i < this.state.word.length; i++) {
-      for (let j = 0; j < this.state.word[i].length; j++)
+     for (let i = 0; i < this.state.MainStorage.length; i++) {
+      for (let j = 0; j < this.state.MainStorage[i].length; j++)
       {
-         for (let z = 0; z <this.state.word[i][j].length; z++) {
+         for (let z = 0; z <this.state.MainStorage[i][j].length; z++) {
    
             if(flag=='false' && data=='false')
             {
-               if(this.state.word[i][j][0]=='0' && this.state.word[i][j][1]=='0')
+               if(this.state.MainStorage[i][j][0]=='0' && this.state.MainStorage[i][j][1]=='0')
                   {
    
-                     this.state.word[i][j][0]=houseno;
-                     this.state.word[i][j][1]=date;
+                     this.state.MainStorage[i][j][0]=houseno;
+                     this.state.MainStorage[i][j][1]=date;
                      flag='true'
                      data='true';
                   }
@@ -145,29 +123,53 @@ constructor(){
       }
       }
           
-      this.setState({ date: '' });
+      
       this.setState({ houseno: '' })
+      };
+
+
+      Analyze2(){
+         var b = 0;
+         var current = Moment().startOf('day');
+         var duration=Moment.duration(current.diff(b)).asDays();
+         var status = "";
+         
+         for (let i = 0; i < this.state.MainStorage.length; i++){
+            for (let j = 0; j < this.state.MainStorage[i].length; j++)
+            {
+               for (let z = 0; z <this.state.MainStorage[i][j].length; z++){
+                  b = this.state.MainStorage[i][j][1];
+                  duration=Moment.duration(current.diff(b)).asDays();
+      
+                  if(duration>2)
+                  {
+                    this.state.UncollectedParcelArray.push(this.state.MainStorage[i][j][0]);
+                    this.state.MainStorage[i][j][0]='0';
+                    this.state.MainStorage[i][j][1]='0';
+                    this.state.status = "Return the parcel to sender"; 
+                  }
+                  else{
+                     this.state.status = "Keep the parcel in storage";
+                  }
+               }
+      
+            }
 
 
 
+         }   
+       }
 
-      }
       render() {
-        const { date2 } = this.state;
-
-     
          return (
           <View style={styles.container}>
          <View style={styles.container}>
-         <Text style={styles.header}>A Word Analyzer</Text>
+         <Text style={styles.header}>Parcel Management System</Text>
          <table>
-          <tr>
-          <td>date</td> 
-            <td><TextInput style={styles.TextInput} onChangeText={(date) => this.setState({date})} placeholder='enter word'/></td>
-          </tr>
+          
           <tr>
           <td>House No</td> 
-            <td><TextInput style={styles.TextInput} onChangeText={(houseNo) => this.setState({houseNo})} placeholder='enter word'/></td>
+            <td><TextInput style={styles.TextInput} onChangeText={(houseNo) => this.setState({houseNo})} placeholder='enter House No.'/></td>
           </tr>
       
       
@@ -194,33 +196,34 @@ constructor(){
                <td>
                       Message
                </td>
-              <td>   :{this.state.word[2][0][0]} {this.state.word[2][0][1]}
+              <td>   :{this.state.MainStorage[0][1][0]} {this.state.MainStorage[0][1][1]}
               </td>
           </tr>
           <tr>
                <td>
                       Message
                </td>
-              <td>   :{this.state.word[2][1][0]} {this.state.word[2][1][1]}
+              <td>   :{this.state.MainStorage[2][1][0]} {this.state.MainStorage[2][1][1]}
+              </td>
+          </tr>
+      
+          <tr>
+               <td>
+                      Uncollected Parcel(House No):
+               </td>
+              <td>  {this.Analyze2()} {this.state.UncollectedParcelArray[0]},{this.state.UncollectedParcelArray[2]}
               </td>
           </tr>
 
-          <td><td><View style={styles.button}>
-                  <Button color="#1d2424" 
-               title="Analyze dates"
-               onPress={() => this.analyzeDate(this.state.arr) }/> //call fx analyzeDate
-                   </View></td></td>
+          <tr>
+               <td>
+                     Parcel Status:
+               </td>
+              <td>  {this.Analyze2()} {this.state.status}
+              </td>
+          </tr>
       
-            <p>{this.state.arr[0][0]}</p> //testing output, dont keep this
-          
-
-
-          <div class="date2">
-        <p> {this.state.date2}</p>
-      </div>
-
       
-
           
           </table>
          </View>
