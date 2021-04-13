@@ -73,7 +73,8 @@ constructor(){
       UncollectedParcelArray:[],
       date:Moment().format('YYYY-MM-DD'),
       houseNo:'',
-      message:''
+      message:'',
+      status: '',
    } 
    }
    analyze(date,houseno) {
@@ -133,6 +134,7 @@ constructor(){
          var current = Moment().startOf('day');
          var duration=Moment.duration(current.diff(b)).asDays();
          
+         
          for (let i = 0; i < this.state.MainStorage.length; i++){
             for (let j = 0; j < this.state.MainStorage[i].length; j++)
             {
@@ -145,7 +147,9 @@ constructor(){
                     this.state.UncollectedParcelArray.push(this.state.MainStorage[i][j][0]);
                     this.state.MainStorage[i][j][0]='0';
                     this.state.MainStorage[i][j][1]='0';
+                  
 
+                    //any uncollected parcel more than 2 days will be returned to sender
                     this.state.status = "Return the parcel to sender"; 
                   }
                   else{
