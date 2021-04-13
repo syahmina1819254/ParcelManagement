@@ -132,7 +132,6 @@ constructor(){
          var b = 0;
          var current = Moment().startOf('day');
          var duration=Moment.duration(current.diff(b)).asDays();
-         var status = "";
          
          for (let i = 0; i < this.state.MainStorage.length; i++){
             for (let j = 0; j < this.state.MainStorage[i].length; j++)
@@ -146,6 +145,7 @@ constructor(){
                     this.state.UncollectedParcelArray.push(this.state.MainStorage[i][j][0]);
                     this.state.MainStorage[i][j][0]='0';
                     this.state.MainStorage[i][j][1]='0';
+
                     this.state.status = "Return the parcel to sender"; 
                   }
                   else{
@@ -214,16 +214,14 @@ constructor(){
               <td>  {this.Analyze2()} {this.state.UncollectedParcelArray[0]},{this.state.UncollectedParcelArray[2]}
               </td>
           </tr>
-
+      
           <tr>
                <td>
-                     Parcel Status:
+                     Parcel status:
                </td>
               <td>  {this.Analyze2()} {this.state.status}
               </td>
           </tr>
-      
-      
           
           </table>
          </View>
