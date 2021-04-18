@@ -169,6 +169,8 @@ constructor(){
          
          
        }
+   
+       //Assmida binti Hassdee 1819114
        //Function when the uncollected parcel send back to seller it will remove from uncollected parcel list
        Uncollected(key){
 
@@ -228,7 +230,7 @@ constructor(){
                   </Table>
                </View>
       
-
+              //Assmida binti Hassdee 1819114
               <View style={styles.container}>
                   <Text  style={styles.subheader}>Uncollected Parcel(Please send back the parcel to sender)</Text>
                   <Text  style={styles.subheader}>House No:</Text>
