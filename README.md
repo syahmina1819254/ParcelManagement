@@ -6,9 +6,9 @@ a. Group Name.
 
 b. Group Member Details (Name & Matric No).
   1. Mina-1819254
-  2. Aimie- 1710006
+  2. Nor Aimie Nadia- 1710006
   3. Balqis- 1715230
-  4. Tirah- 1813606
+  4. Nurul Athirah Binti Mohd Borhan- 1813606
   5. Assmida binti Hassdee (1819114)
 
 c. The assigned tasks for each group member.
@@ -25,6 +25,6 @@ d. Brief Description of the case study.
 
 iv. Insert your name and matric no at the comment of the code that you have developed according to what you have been assigned.
   1. Mina -- 
-  2. Aimie and Tirah -- 
+  2. Aimie and Tirah -- line 137 to 168
   3. Assmida binti Hassdee -- line 174 to 193 and 233 to 241
   4. Balqis -- 
