@@ -154,7 +154,8 @@ constructor(){
                        this.state.MainStorage[i][j][2]='0';
 
                      }
-
+                     
+                    //Assmida binti Hassdee
                     //any uncollected parcel more than 2 days will be returned to sender
                     this.state.status = "Return the parcel to sender"; 
                   }
