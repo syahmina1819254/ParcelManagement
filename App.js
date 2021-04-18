@@ -221,7 +221,7 @@ constructor(){
                </View>
         
                 
-        
+               //Siti Nurbalqis binti Saharudin
                <View style={styles.container}>
                   <Table borderStyle={{borderWidth: 1}}>
                       <Row data={this.state.tableHead} flexArr={[1, 1, 1, 1,1]} style={styles.head} textStyle={styles.text}/>
