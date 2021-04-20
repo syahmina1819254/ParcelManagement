@@ -5,7 +5,7 @@ a. Group Name.
    Group C
 
 b. Group Member Details (Name & Matric No).
-  1. Nur Syahmina (1819254)
+  1. Nur Syahmina Bt Kadir (1819254)
   2. Nor Aimie Nadia binti Yusrin  (1710006)
   3. Siti Nurbalqis (1715230)
   4. Nurul Athirah Binti Mohd Borhan (1813606)
