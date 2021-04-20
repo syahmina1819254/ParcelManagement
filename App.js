@@ -13,6 +13,7 @@ constructor(){
       tableTitle: ['1', '2', '3', '4','5','6','7','8','9','10','11', '12', '13', '14','15','16','17','18','19','20','21', 
       '22', '23', '24','25','26','27','28','29','30',],
     //first element is house no second element is date
+      //Nur Syahmina Bt Kadir
     MainStorage:[
       [  ['24','|','2021/04/11'],['12','|','2021/04/09'],['26','|','2021/04/08'],['27','|','2021/04/07'],['28','|','2021/04/06']
       ],
@@ -82,6 +83,8 @@ constructor(){
       message:''
    } 
    }
+   
+   //Nur Syahmina Bt Kadir
    StoreData(date,houseno) {
      var flag='false';
      var data='false';
